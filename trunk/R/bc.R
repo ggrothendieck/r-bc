@@ -2,7 +2,6 @@
 bc <- function(..., scale = getOption("bc.scale"), logical = FALSE, 
 	cmd = "bc -l") {
 	if (is.null(scale)) scale <- 100
-    input <- paste(..., sep = "")
     out <- system(cmd, input = c(paste("scale", scale, sep = "="), 
 		paste(..., sep = "")), intern = TRUE)
 	if (nchar(Sys.getenv("BC_LINE_LENGTH")) == 0) {
