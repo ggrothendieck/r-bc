@@ -29,6 +29,12 @@ bc(..., scale = 100, logical = FALSE, cmd = "bc -l")
   \code{S3} \code{Ops} and \code{exp}, \code{log}, \code{sin} and
   \code{cos}.
 
+  The default action is to collapse all lines that are returned into a
+  single line but if the user sets \code{Sys.setenv(BC_LINE_LINE=100)},
+  say, or some other then no collapsing will be done and its the responsibility
+  of the user to ensure that the number specified is sufficiently large.
+  Specifying \code{BC_LINE_LENGTH} in this way will result in a minor speedup.
+
   
 }
 \value{

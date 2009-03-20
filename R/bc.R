@@ -3,8 +3,10 @@ bc <- function(..., scale = 100, logical=FALSE, cmd = "bc -l") {
     input <- paste(..., sep = "")
     out <- system(cmd, input = c(paste("scale", scale, sep = "="), 
 		paste(..., sep = "")), intern = TRUE)
-	result <- structure(paste(sub("\\\\", "", out), collapse= ""), 
-		class = c("bc", "character"))
+	if (nchar(Sys.getenv("BC_LINE_LENGTH")) == 0) {
+		out <- paste(sub("\\\\", "", out), collapse= "")
+	}
+	result <- structure(out, class = c("bc", "character"))
     if (logical) as.logical(result) else result
 }
 
