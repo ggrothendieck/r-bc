@@ -14,12 +14,14 @@
  Interface to bc calculator.
 }
 \usage{
-bc(..., scale = 100, logical = FALSE, cmd = "bc -l")
+bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd = "bc -l")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{\dots}{ Each argument is a line passed to bc. }
-  \item{scale}{ Number of decimals. }
+  \item{scale}{ Number of decimals. If unspecified the value is taken
+   from the \code{bc.scale} option and if that is also unspecified, 
+   100 is used.}
   \item{logical}{ If \code{TRUE} convert result to logical. }
   \item{cmd}{ Character string representing the \code{bc} command. }
 }
