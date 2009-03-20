@@ -9,4 +9,3 @@ SystemRequirements: bc (comes with UNIX and available in UnxUtils for Windows)
 URL: http://r-bc.googlecode.com
 LazyLoad: yes
 License: GPL-2
-Packaged: Thu Mar 19 23:20:20 2009; Louis

@@ -3,8 +3,7 @@ bc <- function(..., scale=100, logical=FALSE, cmd = "bc -l") {
     if (missing(cmd)) {
         cmd2 <- if (.Platform$OS.type == "windows") {
             paste("cmd /c set BC_LINE_LENGTH=", 2*scale, "&&", cmd, sep = "")
-        } else paste("scale=", 2*scale, "  | bc")
-            paste("BC_LINE_LENGTH=", 2*scale, " | ", cmd, sep = "")
+        } else paste("BC_LINE_LENGTH=", 2*scale, " ", cmd, sep = "")
     }
     input <- c(paste("scale", scale, sep = "="), paste(..., sep = ""))
     structure(system(cmd2, input = input, intern = TRUE), 
