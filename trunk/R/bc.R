@@ -1,7 +1,8 @@
 
-bc <- function(..., logical=FALSE, cmd = "bc -l") {
+bc <- function(..., scale = 100, logical=FALSE, cmd = "bc -l") {
     input <- paste(..., sep = "")
-    out <- system(cmd, input = input, intern = TRUE)
+    out <- system(cmd, input = c(paste("scale", scale, sep = "="), 
+		paste(..., sep = "")), intern = TRUE)
 	result <- structure(paste(sub("\\\\", "", out), collapse= ""), 
 		class = c("bc", "character"))
     if (logical) as.logical(result) else result
