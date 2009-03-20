@@ -32,7 +32,7 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd = "bc -l")
   \code{cos}.
 
   The default action is to collapse all lines that are returned into a
-  single line but if the user sets \code{Sys.setenv(BC_LINE_LINE=100)},
+  single line but if the user sets \code{Sys.setenv(BC_LINE_LINE="100")},
   say, or some other then no collapsing will be done and its the responsibility
   of the user to ensure that the number specified is sufficiently large.
   Specifying \code{BC_LINE_LENGTH} in this way will result in a minor speedup.
@@ -49,6 +49,12 @@ Another Windows distribution (less convenient since it requires readline4.dll):
 minimal Windows distribution containing only \code{bc.exe} on r-bc site:
 \url{http://r-bc.googlecode.com/files/bc_1.05.zip}.
 }
+\section{Warning}{If setting \code{BC_LINE_LENGTH} be sure to quote the number
+so that it is specified as a character string; otherwise, there is
+a possibility that
+long line length specifications 
+get undesirably converted to \code{"e"} notation when 
+the number is converted to character.}
 \note{
   The \code{bc} function runs the \code{bc} executable.  This is normally 
   included with UNIX so no further setup is needed on that platform.
