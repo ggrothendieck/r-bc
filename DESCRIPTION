@@ -2,7 +2,7 @@ Package: bc
 Version: 0.1-1
 Date: 2009-03-19
 Title: bc
-Author: G Grothendieck, W Kusnierczy
+Author: G Grothendieck, W Kusnierczyk
 Maintainer: G Grothendieck <ggrothendieck@gmail.com>
 Description: interface to the bc calculator
 SystemRequirements: bc (comes with UNIX and available in UnxUtils for Windows)
