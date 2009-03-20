@@ -1,14 +1,10 @@
 
-bc <- function(..., scale=100, logical=FALSE, cmd = "bc -l") {
-    if (missing(cmd)) {
-        cmd2 <- if (.Platform$OS.type == "windows") {
-            paste("cmd /c set BC_LINE_LENGTH=", 2*scale, "&&", cmd, sep = "")
-        } else paste("BC_LINE_LENGTH=", 2*scale, " ", cmd, sep = "")
-    }
-    input <- c(paste("scale", scale, sep = "="), paste(..., sep = ""))
-    structure(system(cmd2, input = input, intern = TRUE), 
+bc <- function(..., logical=FALSE, cmd = "bc -l") {
+    input <- paste(..., sep = "")
+    out <- system(cmd, input = input, intern = TRUE)
+	result <- structure(paste(sub("\\\\", "", out), collapse= ""), 
 		class = c("bc", "character"))
-    # if (logical) as.logical(result) else result
+    if (logical) as.logical(result) else result
 }
 
 # - A bc object is a character string with class "bc".
