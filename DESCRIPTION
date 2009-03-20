@@ -1,0 +1,11 @@
+Package: bc
+Version: 0.1-1
+Date: 2009-03-19
+Title: bc
+Author: G Grothendieck, W Kusnierczy
+Maintainer: G Grothendieck <ggrothendieck@gmail.com>
+Description: interface to the bc calculator
+SystemRequirements: bc (comes with UNIX and available in UnxUtils for Windows)
+LazyLoad: yes
+License: GPL-2
+Packaged: Thu Mar 19 23:20:20 2009; Louis
