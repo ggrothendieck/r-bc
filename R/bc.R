@@ -12,8 +12,11 @@ bc <- function(..., scale = getOption("bc.scale"), logical = FALSE,
 	}
 	cmd <- paste(cmd, args)
 	if (is.null(scale)) scale <- 100
-    out <- system(cmd, input = c(paste("scale", scale, sep = "="), 
-		paste(..., sep = "")), intern = TRUE)
+	dots <- list(...)
+	dots <- sapply(dots, format, scientific = FALSE)
+	dots <- paste(dots, collapse = "")
+    out <- system(cmd, input = c(paste("scale", scale, sep = "="), dots), 
+		intern = TRUE)
 	if (nchar(Sys.getenv("BC_LINE_LENGTH")) == 0) {
 		out <- paste(sub("\\\\", "", out), collapse= "")
 	}

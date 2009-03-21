@@ -55,13 +55,13 @@ Another Windows distribution (less convenient since it requires readline4.dll):
 minimal Windows distribution containing only \code{bc.exe} on r-bc site:
 \url{http://r-bc.googlecode.com/files/bc_1.05.zip}.
 }
-\section{Warning}{\code{bc} does not accept \code{"e"} notation such as
-\code{1e-5} so be careful about passing numbers which might get converted
-to such notation as they are converted to character before passing them to
-\code{bc} and such conversion can result in the use of \code{"e"} notation.  
-Its better to pass them as character strings, e.g.
-\code{".00001"} rather than \code{.00001}.  Similarly \code{"10000"} or
-\code{10000L} is safer than \code{10000}.}
+\section{Warning}{Although most users can just use the default and not
+worry about the environment variable \code{BC_LINE_LENGTH} should you wish
+to set it be aware that it is a character variable.  Setting it with a
+numeric value which is very large could result in \code{"e"} notation
+used during the conversion and this would result in an error.  Use
+either of these forms instead: \code{options(BC_LINE_LENGTH = 100000L)}
+or \code{options(BC_LINE_LENGTH = "100000")}.}
 \note{
   The \code{bc} function runs the \code{bc} executable.  This is normally 
   included with UNIX so no further setup is needed on that platform.
