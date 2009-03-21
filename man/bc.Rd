@@ -16,12 +16,13 @@
 \usage{
 bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l")
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{\dots}{ Each argument is a line passed to bc. }
-  \item{scale}{ Number of decimals. If unspecified the value is taken
+  \item{scale}{ Number of decimals. If unspecified, the value is taken
    from the \code{bc.scale} option and if that is also unspecified, 
-   100 is used.}
+   \code{min(100, BC_LINE_LENGTH/2)} is used if the \code{BC_LINE_LENGTH} 
+   environment variable was specified and 100 if a value for that
+   environment variable was not specified.}
   \item{logical}{ If \code{TRUE} convert result to logical. }
   \item{cmd}{ Character string representing the \code{bc} command.  Default
     is to use "bc" but if that is not found on path it looks in \code{bcdir} in
@@ -38,11 +39,12 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l")
   \code{cos}.
 
   The default action is to collapse all lines that are returned into a
-  single line but if the user sets \code{Sys.setenv(BC_LINE_LINE="100")},
-  say, or some other then no collapsing will be done and its the responsibility
+  single line but if the user sets the \code{BC_LINE_LENGTH} environment 
+  variable, e.g. \code{Sys.setenv(BC_LINE_LINE=100)}, say, 
+  then no collapsing will be done and its the responsibility
   of the user to ensure that the number specified is sufficiently large.
-  Specifying \code{BC_LINE_LENGTH} in this way will result in a minor speedup.
-
+  If not errors will result.
+  Specifying \code{BC_LINE_LENGTH} in this way may result in a minor speedup.
   
 }
 \value{
@@ -58,10 +60,11 @@ minimal Windows distribution containing only \code{bc.exe} on r-bc site:
 \note{
   The \code{bc} function runs the \code{bc} executable.  This is normally 
   included with UNIX so no further setup is needed on that platform.
-  For Windows, \code{bc} can be downloaded by issuing the command {bcInstall()}.
+  For Windows, \code{bc} can be downloaded by issuing the \code{R} command 
+  {bcInstall()} with no arguments.
   This will download it into the package itself and subsequent calls to
-  \code{bc} will find it.  Alternately Windows users can download \code{bc.exe}
-  from Download area of the home page of this package on googlecode placing 
+  \code{bc} will find it.  Alternately Windows users can download \code{bc}
+  from the Download area of the home page of this package on googlecode placing 
   it anywhere in their path.
 
 }
