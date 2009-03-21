@@ -1,6 +1,7 @@
 
 bc <- function(..., scale = getOption("bc.scale"), logical = FALSE, 
 	cmd, args = "-l") {
+
 	if (missing(cmd)) {
 		bcfile <- Sys.which("bc")
 		cmd <- if (nchar(bcfile) > 0) "bc"
@@ -11,15 +12,31 @@ bc <- function(..., scale = getOption("bc.scale"), logical = FALSE,
 		}
 	}
 	cmd <- paste(cmd, args)
-	if (is.null(scale)) scale <- 100
+
 	dots <- list(...)
 	dots <- sapply(dots, format, scientific = FALSE)
 	dots <- paste(dots, collapse = "")
-    out <- system(cmd, input = c(paste("scale", scale, sep = "="), dots), 
-		intern = TRUE)
-	if (nchar(Sys.getenv("BC_LINE_LENGTH")) == 0) {
-		out <- paste(sub("\\\\", "", out), collapse= "")
+
+	run <- function() {
+		scale <- format(as.numeric(scale), scientific = FALSE)
+		input <- c(paste("scale", scale, sep = "="), dots)
+		browser()
+		system(cmd, input = input, intern = TRUE)
 	}
+	BC_LINE_LENGTH <- Sys.getenv("BC_LINE_LENGTH")
+	if (nchar(BC_LINE_LENGTH) == 0) {
+		if (missing(scale)) scale <- 100
+		out <- run()
+		out <- paste(sub("\\\\", "", out), collapse= "")
+	} else {
+		# ensure BC_LINE_LENGTH not in scientific format
+		bc_line_length <- as.numeric(BC_LINE_LENGTH)
+		BC_LINE_LENGTH <- format(bc_line_length, scientific = FALSE)
+		Sys.setenv(BC_LINE_LENGTH = BC_LINE_LENGTH)
+		if (missing(scale)) scale <- min(100, floor(bc_line_length / 2))
+		out <- run()
+	}
+
 	result <- structure(out, class = c("bc", "character"))
     if (logical) as.logical(result) else result
 }

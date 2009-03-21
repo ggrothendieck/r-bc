@@ -55,13 +55,6 @@ Another Windows distribution (less convenient since it requires readline4.dll):
 minimal Windows distribution containing only \code{bc.exe} on r-bc site:
 \url{http://r-bc.googlecode.com/files/bc_1.05.zip}.
 }
-\section{Warning}{Although most users can just use the default and not
-worry about the environment variable \code{BC_LINE_LENGTH} should you wish
-to set it be aware that it is a character variable.  Setting it with a
-numeric value which is very large could result in \code{"e"} notation
-used during the conversion and this would result in an error.  Use
-either of these forms instead: \code{options(BC_LINE_LENGTH = 100000L)}
-or \code{options(BC_LINE_LENGTH = "100000")}.}
 \note{
   The \code{bc} function runs the \code{bc} executable.  This is normally 
   included with UNIX so no further setup is needed on that platform.
