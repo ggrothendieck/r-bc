@@ -17,13 +17,18 @@ bcFile <- function(filename = "bc.exe",
 }
 
 bcInstall <- function(url = 
-   "http://r-bc.googlecode.com/files/bc.exe",
+   "http://r-bc.googlecode.com/files/bc_1.05.zip",
    overwrite = FALSE) {
    stopifnot(.Platform$OS.type == "windows")
+   files <- "bc.exe"
+   on.path <- Sys.which(files)
+   if (nchar(on.path) > 0) {
+      warning(paste(bcFile(files), "also found on PATH\n"))
+   }
    tmpd <- tempdir()
    tmpz <- file.path(tmpd, basename(url))
    download.file(url, tmpz, mode = "wb")
-   files <- "bc.exe"
+   zip.unpack(tmpz, tmpd)
    lf <- function(f) list.files(path = tmpd, pattern = f,
       all.files = FALSE, full.names = TRUE, recursive = TRUE)
    for (f in files)
