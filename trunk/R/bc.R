@@ -34,6 +34,7 @@ Ops.bc <- function (e1, e2)
 
 transtab <- matrix( c("exp", "e", 
 					  "log", "l", 
+					  "atan", "a",
 					  "sin", "s",
 					  "cos", "c"), nc = 2, byrow = TRUE)
 

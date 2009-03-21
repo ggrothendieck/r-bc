@@ -34,7 +34,7 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l")
 \details{
   Passes its arguments to bc and collects the result back as a \code{"bc"}
   class object.  There are \code{"bc"} methods for \code{print}, 
-  \code{S3} \code{Ops} and \code{exp}, \code{log}, \code{sin} and
+  \code{S3} \code{Ops} and \code{exp}, \code{log}, \code{atan}, \code{sin} and
   \code{cos}.
 
   The default action is to collapse all lines that are returned into a
