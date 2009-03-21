@@ -14,7 +14,7 @@
  Interface to bc calculator.
 }
 \usage{
-bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd = "bc -l")
+bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +23,13 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd = "bc -l")
    from the \code{bc.scale} option and if that is also unspecified, 
    100 is used.}
   \item{logical}{ If \code{TRUE} convert result to logical. }
-  \item{cmd}{ Character string representing the \code{bc} command. }
+  \item{cmd}{ Character string representing the \code{bc} command.  Default
+    is to use "bc" but if that is not found on path it looks in \code{bcdir} in
+    the \code{bc} package directory. On Windows the \code{bcInstall()} command
+    can be used to automatically download and install \code{bc} in 
+    \code{bcdir}.  On UNIX systems \code{bc} is normally present on path so 
+    no action need be taken.}
+  \item{args}{ Arguments used when issuing \code{bc} command. }
 }
 \details{
   Passes its arguments to bc and collects the result back as a \code{"bc"}
@@ -49,12 +55,12 @@ Another Windows distribution (less convenient since it requires readline4.dll):
 minimal Windows distribution containing only \code{bc.exe} on r-bc site:
 \url{http://r-bc.googlecode.com/files/bc_1.05.zip}.
 }
-\section{Warning}{If setting \code{BC_LINE_LENGTH} be sure to quote the number
-so that it is specified as a character string; otherwise, there is
-a possibility that
-long line length specifications 
-get undesirably converted to \code{"e"} notation when 
-the number is converted to character.}
+\section{Warning}{\code{BC_LINE_LENGTH} is stored as character so
+when setting it be aware that there will be a conversion if the
+value is not also character.  \code{Sys.setenv(BC_LINE_LENGTH = "10000")}
+or \code{Sys.setenv(BC_LINE_LENGTH = 10000L)} should work fine but
+just using an ordinary numeric risks conversion to \code{"e"} format
+which result in an error.}
 \note{
   The \code{bc} function runs the \code{bc} executable.  This is normally 
   included with UNIX so no further setup is needed on that platform.
