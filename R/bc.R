@@ -1,6 +1,6 @@
 
 bc <- function(..., scale = getOption("bc.scale"), logical = FALSE, 
-	cmd, args = "-l") {
+	cmd, args = "-l", verbose = getOption("bc.verbose")) {
 
 	if (missing(cmd)) {
 		bcfile <- Sys.which("bc")
@@ -12,6 +12,7 @@ bc <- function(..., scale = getOption("bc.scale"), logical = FALSE,
 		}
 	}
 	cmd <- paste(cmd, args)
+	if (is.null(verbose)) verbose <- FALSE
 
 	dots <- list(...)
 	dots <- sapply(dots, format, scientific = FALSE)
@@ -20,8 +21,10 @@ bc <- function(..., scale = getOption("bc.scale"), logical = FALSE,
 	run <- function() {
 		scale <- format(as.numeric(scale), scientific = FALSE)
 		input <- c(paste("scale", scale, sep = "="), dots)
-		browser()
-		system(cmd, input = input, intern = TRUE)
+		if (verbose) cat("bc input:", input, "\n")
+		out <- system(cmd, input = input, intern = TRUE)
+		if (verbose) cat("bc output:", out, "\n")
+		out
 	}
 	BC_LINE_LENGTH <- Sys.getenv("BC_LINE_LENGTH")
 	if (nchar(BC_LINE_LENGTH) == 0) {
