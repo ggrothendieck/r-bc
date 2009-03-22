@@ -14,7 +14,8 @@
  Interface to bc calculator.
 }
 \usage{
-bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l")
+bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l",
+	verbose = getOption("bc.verbose"))
 }
 \arguments{
   \item{\dots}{ Each argument is a line passed to bc. }
@@ -31,6 +32,8 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l")
     \code{bcdir}.  On UNIX systems \code{bc} is normally present on path so 
     no action need be taken.}
   \item{args}{ Arguments used when issuing \code{bc} command. }
+  \item{verbose}{ Displays input and output to bc.  For debugging.  Logical
+    or can use \code{NULL} to represent \code{FALSE}.}
 }
 \details{
   Passes its arguments to bc and collects the result back as a \code{"bc"}
@@ -74,6 +77,14 @@ minimal Windows distribution containing only \code{bc.exe} on r-bc site:
 bc("1.1^100")
 bc(1.1) ^ 100
 zero <- bc(0); (zero + 1.1) ^ 100
+
+# both these are same
+bc("x=1; 1+x+x^2/2+x^3/6+x^4/24 - e(x)")
+x <- bc(1); 1+x+x^2/2+x^3/6+x^4/24 - exp(x)
+
+# both these are same
+bc("define sqr(x) {\nreturn(x*x)}; sqr(10)")
+sqr <- function(x) x*x; x <- bc(10); sqr(x)
 }
 }
 \keyword{ misc }
