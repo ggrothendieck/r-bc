@@ -39,16 +39,16 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l",
   Passes its arguments to bc and collects the result back as a \code{"bc"}
   class object.  There are \code{"bc"} methods for \code{print}, 
   \code{S3} \code{Ops} and \code{exp}, \code{log}, \code{atan}, \code{sin} and
-  \code{cos}.
+  \code{cos}.  
 
   The default action is to collapse all lines that are returned into a
   single line but if the user sets the \code{BC_LINE_LENGTH} environment 
   variable, e.g. \code{Sys.setenv(BC_LINE_LINE=100)}, say, 
   then no collapsing will be done and its the responsibility
   of the user to ensure that the number specified is sufficiently large.
-  If not errors will result.
-  Specifying \code{BC_LINE_LENGTH} in this way may result in a minor speedup.
   
+  \code{bc} variable and function definitions are not maintained from
+  one call of \code{bc} to the next.
 }
 \value{
   Returns an object of class \code{c("bc", "character")}.
