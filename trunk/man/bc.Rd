@@ -14,8 +14,9 @@
  Interface to bc calculator.
 }
 \usage{
-bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l",
-	verbose = getOption("bc.verbose"))
+bc(..., scale = getOption("bc.scale"), 
+	retclass = c("bc", "character", "logical", "numeric"),
+	cmd, args = "-l", verbose = getOption("bc.verbose"))
 }
 \arguments{
   \item{\dots}{ Each argument is a line passed to bc. }
@@ -24,7 +25,7 @@ bc(..., scale = getOption("bc.scale"), logical = FALSE, cmd, args = "-l",
    \code{min(100, BC_LINE_LENGTH/2)} is used if the \code{BC_LINE_LENGTH} 
    environment variable was specified and 100 if a value for that
    environment variable was not specified.}
-  \item{logical}{ If \code{TRUE} convert result to logical. }
+  \item{retclass}{ class of returned value. }
   \item{cmd}{ Character string representing the \code{bc} command.  Default
     is to use "bc" but if that is not found on path it looks in \code{bcdir} in
     the \code{bc} package directory. On Windows the \code{bcInstall()} command
