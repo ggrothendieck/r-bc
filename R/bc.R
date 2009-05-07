@@ -1,5 +1,6 @@
 
-bc <- function(..., scale = getOption("bc.scale"), logical = FALSE, 
+bc <- function(..., scale = getOption("bc.scale"), 
+	retclass = c("bc", "character", "logical", "numeric"),
 	cmd, args = "-l", verbose = getOption("bc.verbose")) {
 
 	if (missing(cmd)) {
@@ -40,8 +41,12 @@ bc <- function(..., scale = getOption("bc.scale"), logical = FALSE,
 		out <- run()
 	}
 
-	result <- structure(out, class = c("bc", "character"))
-    if (logical) as.logical(result) else result
+	retclass <- match.arg(retclass)
+	switch(retclass,
+		bc = structure(out, class = c("bc", "character")),
+		character = out,
+		logical = as.logical(out),
+		numeric = as.numeric(out))
 }
 
 # - A bc object is a character string with class "bc".
