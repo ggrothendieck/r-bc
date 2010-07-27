@@ -29,7 +29,7 @@ bc <- function(..., scale = getOption("bc.scale"),
 	}
 	BC_LINE_LENGTH <- Sys.getenv("BC_LINE_LENGTH")
 	if (nchar(BC_LINE_LENGTH) == 0) {
-		if (missing(scale)) scale <- 100
+		if (is.null(scale)) scale <- 100
 		out <- run()
 		out <- paste(sub("\\\\", "", out), collapse= "")
 	} else {
@@ -37,7 +37,7 @@ bc <- function(..., scale = getOption("bc.scale"),
 		bc_line_length <- as.numeric(BC_LINE_LENGTH)
 		BC_LINE_LENGTH <- format(bc_line_length, scientific = FALSE)
 		Sys.setenv(BC_LINE_LENGTH = BC_LINE_LENGTH)
-		if (missing(scale)) scale <- min(100, floor(bc_line_length / 2))
+		if (is.null(scale)) scale <- min(100, floor(bc_line_length / 2))
 		out <- run()
 	}
 
