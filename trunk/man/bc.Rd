@@ -47,6 +47,9 @@ bc(..., scale = getOption("bc.scale"),
   variable, e.g. \code{Sys.setenv(BC_LINE_LINE=100)}, say, 
   then no collapsing will be done and its the responsibility
   of the user to ensure that the number specified is sufficiently large.
+
+  Note that in \code{bc} the \code{\%} operator does not mean integer 
+  remainder when \code{scale} is nonzero.
   
   \code{bc} variable and function definitions are not maintained from
   one call of \code{bc} to the next.
