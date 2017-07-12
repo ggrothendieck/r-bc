@@ -8,7 +8,7 @@ should already be the case), that you have the R devtools package installed in
 R and from within R run this:
 
 ```
-devtools::isntall_github("ggrothendieck/r-bc")
+devtools::install_github("ggrothendieck/r-bc")
 ```
 
 The GNU bc site is here http://www.gnu.org/software/bc/ and a Windows version

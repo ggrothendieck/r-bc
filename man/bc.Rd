@@ -60,9 +60,7 @@ bc(..., scale = getOption("bc.scale"),
 \references{ Main Gnu bc site: \url{http://www.gnu.org/software/bc/},
 Windows distribution: \url{http://sourceforge.net/projects/unxutils},
 Another Windows distribution (less convenient since it requires readline4.dll):
-\url{http://gnuwin32.sourceforge.net/packages/bc.htm},
-minimal Windows distribution containing only \code{bc.exe} on r-bc site:
-\url{http://r-bc.googlecode.com/files/bc_1.05.zip}.
+\url{http://gnuwin32.sourceforge.net/packages/bc.htm}.
 }
 \note{
   The \code{bc} function runs the \code{bc} executable.  This is normally 
