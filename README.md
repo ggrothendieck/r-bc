@@ -3,10 +3,20 @@ R interface to bc calculator
 
 This R package allows R users to access the arbitrary precision decimal calculation facilities of the bc calculator normally found on UNIX systems and also freely available on Windows and other systems.
 
-Ensure that the bc calculator itself is on your path.  
+To install, Ensure that the bc calculator itself is on your path (on UNIX this
+should already be the case), that you have the R devtools package installed in
+R and from within R run this:
 
-Example 1.
-----------
+```
+devtools::isntall_github("ggrothendieck/r-bc")
+```
+
+The GNU bc site is here http://www.gnu.org/software/bc/ and a Windows version
+of bc is available here http://gnuwin32.sourceforge.net/packages/bc.htm
+
+
+Example
+-------
 
 This is an example of calculating pi. We create a "bc" object, one, with the value 1. Since anything combined with a "bc" object also becomes a "bc" object:
 
